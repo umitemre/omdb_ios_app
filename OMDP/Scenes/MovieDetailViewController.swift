@@ -46,11 +46,21 @@ class MovieDetailViewController: UIViewController {
         setObservers()
     }
     
+    private func logEvent(_ detail: MovieDetail) {
+        FirebaseManager.shared.analytics.logEvent("view_movie_detail", parameters: [
+            "imdb_id": detail.imdbID ?? "",
+            "movie_title": detail.title ?? "",
+            "movie_year": detail.year ?? "",
+        ])
+    }
+
     private func setObservers() {
         viewModel.movieDetailResult.subscribe { [weak self] data in
             guard let detail = data.element else {
                 return
             }
+            
+            self?.logEvent(detail)
 
             self?.movieGenre.text = "Genre: \(detail.genre ?? "")"
             self?.movieActors.text = "Actors: \(detail.actors ?? "")"
