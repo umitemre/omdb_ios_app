@@ -31,6 +31,8 @@
 		30805BCC299BB50C00D6FE08 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30805BCB299BB50C00D6FE08 /* FirebaseManager.swift */; };
 		30805BCE299BB5FB00D6FE08 /* remote_config_defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30805BCD299BB5FB00D6FE08 /* remote_config_defaults.plist */; };
 		30805BD0299BB71100D6FE08 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30805BCF299BB71100D6FE08 /* GoogleService-Info.plist */; };
+		30805BD2299BDBF900D6FE08 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30805BD1299BDBF900D6FE08 /* SplashViewController.swift */; };
+		30805BD5299BE44900D6FE08 /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = 30805BD4299BE44900D6FE08 /* Reachability */; };
 		308CA3BB29980AB200E5EFBE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308CA3BA29980AB200E5EFBE /* AppDelegate.swift */; };
 		308CA3BD29980AB200E5EFBE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308CA3BC29980AB200E5EFBE /* SceneDelegate.swift */; };
 		308CA3BF29980AB200E5EFBE /* SearchMovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308CA3BE29980AB200E5EFBE /* SearchMovieViewController.swift */; };
@@ -54,6 +56,7 @@
 		30805BCB299BB50C00D6FE08 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		30805BCD299BB5FB00D6FE08 /* remote_config_defaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = remote_config_defaults.plist; sourceTree = "<group>"; };
 		30805BCF299BB71100D6FE08 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		30805BD1299BDBF900D6FE08 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		308CA3B729980AB200E5EFBE /* OMDP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OMDP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		308CA3BA29980AB200E5EFBE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		308CA3BC29980AB200E5EFBE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -71,6 +74,7 @@
 				30805BC9299AA96600D6FE08 /* FirebaseRemoteConfigSwift in Frameworks */,
 				3049D9C02998440300BF1A1F /* RxSwift in Frameworks */,
 				3049D9B529983E0A00BF1A1F /* Alamofire in Frameworks */,
+				30805BD5299BE44900D6FE08 /* Reachability in Frameworks */,
 				30805BC7299AA96600D6FE08 /* FirebaseRemoteConfig in Frameworks */,
 				30805BC1299AA96600D6FE08 /* FirebaseAnalytics in Frameworks */,
 				3049D9C9299854D600BF1A1F /* AlamofireImage in Frameworks */,
@@ -125,6 +129,7 @@
 				308CA3BE29980AB200E5EFBE /* SearchMovieViewController.swift */,
 				3049D9C229984B0400BF1A1F /* ResultsViewController.swift */,
 				3049D9D1299966AC00BF1A1F /* MovieDetailViewController.swift */,
+				30805BD1299BDBF900D6FE08 /* SplashViewController.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -214,6 +219,7 @@
 				30805BC4299AA96600D6FE08 /* FirebaseMessaging */,
 				30805BC6299AA96600D6FE08 /* FirebaseRemoteConfig */,
 				30805BC8299AA96600D6FE08 /* FirebaseRemoteConfigSwift */,
+				30805BD4299BE44900D6FE08 /* Reachability */,
 			);
 			productName = OMDP;
 			productReference = 308CA3B729980AB200E5EFBE /* OMDP.app */;
@@ -248,6 +254,7 @@
 				3049D9BE2998440300BF1A1F /* XCRemoteSwiftPackageReference "RxSwift" */,
 				3049D9C7299854D600BF1A1F /* XCRemoteSwiftPackageReference "AlamofireImage" */,
 				30805BBF299AA96600D6FE08 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				30805BD3299BE44900D6FE08 /* XCRemoteSwiftPackageReference "Reachability" */,
 			);
 			productRefGroup = 308CA3B829980AB200E5EFBE /* Products */;
 			projectDirPath = "";
@@ -279,6 +286,7 @@
 				3049D9C629984BAB00BF1A1F /* SearchItemCell.swift in Sources */,
 				3049D9D62999736500BF1A1F /* MovieDetail.swift in Sources */,
 				308CA3BF29980AB200E5EFBE /* SearchMovieViewController.swift in Sources */,
+				30805BD2299BDBF900D6FE08 /* SplashViewController.swift in Sources */,
 				3049D9CC299854F500BF1A1F /* UIImageView+Extensions.swift in Sources */,
 				3049D9BB29983FC200BF1A1F /* SearchResult.swift in Sources */,
 				3049D9D2299966AC00BF1A1F /* MovieDetailViewController.swift in Sources */,
@@ -523,6 +531,14 @@
 				kind = branch;
 			};
 		};
+		30805BD3299BE44900D6FE08 /* XCRemoteSwiftPackageReference "Reachability" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ashleymills/Reachability.swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -565,6 +581,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 30805BBF299AA96600D6FE08 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseRemoteConfigSwift;
+		};
+		30805BD4299BE44900D6FE08 /* Reachability */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 30805BD3299BE44900D6FE08 /* XCRemoteSwiftPackageReference "Reachability" */;
+			productName = Reachability;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

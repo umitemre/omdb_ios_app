@@ -31,12 +31,6 @@ class SearchMovieViewController: UIViewController {
         navigationItem.searchController = searchController
 
         view.backgroundColor = UIColor.white
-        
-        // Random code that verifies if Firebaseconfig works or not
-        FirebaseManager.shared.fetchRemoteConfig {
-            let val = FirebaseManager.shared.config.configValue(forKey: "splash_screen_app_name")
-            print("Remote config value for splash_screen_app_name: \(val.stringValue ?? "not found")")
-        }
     }
     
     private func getResultsViewController() -> ResultsViewController {
