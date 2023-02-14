@@ -44,15 +44,6 @@ class SplashViewController: UIViewController {
         
         self.present(alert, animated: true, completion: nil)
     }
-
-    private func animateAppName() {
-        UIView.animate(withDuration: 2.0, delay: 0.5, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: [], animations: {
-            self.titleLabel.alpha = 1.0
-            self.titleLabel.transform = CGAffineTransform.identity
-        }) { _ in
-            self.onAnimationCompleted()
-        }
-    }
     
     private func onInternetConnectionSuccess() {
         FirebaseManager.shared.fetchRemoteConfig { [weak self] in
@@ -126,5 +117,16 @@ private extension SplashViewController {
             titleLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
             titleLabel.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
         ])
+    }
+
+    func animateAppName() {
+        UIView.animate(withDuration: 2.0, delay: 0.5, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: [], animations: {
+            self.titleLabel.alpha = 1.0
+            self.titleLabel.transform = CGAffineTransform.identity
+        }) { _ in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
+                self?.onAnimationCompleted()
+            }
+        }
     }
 }
