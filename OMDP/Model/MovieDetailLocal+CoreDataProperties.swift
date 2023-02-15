@@ -17,8 +17,9 @@ extension MovieDetailLocal {
     }
 
     @NSManaged public var imdbId: String?
-    @NSManaged public var title: String?
     @NSManaged public var poster: String?
+    @NSManaged public var title: String?
+    @NSManaged public var timestamp: Date?
 
 }
 

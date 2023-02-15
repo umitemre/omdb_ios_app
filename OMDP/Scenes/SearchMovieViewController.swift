@@ -10,6 +10,22 @@ import RxSwift
 import FirebaseRemoteConfig
 
 class SearchMovieViewController: UIViewController {
+    let disposeBag = DisposeBag()
+    
+    let recentlyViewedHeader = UILabel()
+    let recentlyViewedDataSource = RecentlyViewedDataSource()
+
+    let viewModel = SearchViewModel()
+
+    lazy var recentlyViewedCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.minimumLineSpacing = 0
+        layout.minimumInteritemSpacing = 0
+
+        return UICollectionView(frame: .zero, collectionViewLayout: layout)
+    }()
+
     private let searchController: UISearchController = {
         let resultsViewController = ResultsViewController(collectionViewLayout: UICollectionViewFlowLayout())
         let searchController = UISearchController(searchResultsController: resultsViewController)
@@ -20,6 +36,31 @@ class SearchMovieViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.setupUI()
+        self.setObservers()
+        
+        self.viewModel.fetchRecentlyViewed()
+    }
+    
+    private func setObservers() {
+        self.viewModel.recentlyViewedMovies.subscribe { [weak self] data in
+            guard let data = data.element else {
+                return
+            }
+
+            self?.recentlyViewedDataSource.updateData(data: data)
+            self?.recentlyViewedCollectionView.reloadData()
+        }.disposed(by: disposeBag)
+    }
+
+    private func getResultsViewController() -> ResultsViewController {
+        return self.searchController.searchResultsController as! ResultsViewController
+    }
+}
+
+private extension SearchMovieViewController {
+    func setupUI() {
         title = "Search"
 
         searchController.searchBar.delegate = self
@@ -31,10 +72,44 @@ class SearchMovieViewController: UIViewController {
         navigationItem.searchController = searchController
 
         view.backgroundColor = UIColor.white
+        
+        setupRecentlyViewedHeader()
+        setupRecentlyViewedCollectionView()
     }
     
-    private func getResultsViewController() -> ResultsViewController {
-        return self.searchController.searchResultsController as! ResultsViewController
+    func setupRecentlyViewedHeader() {
+        recentlyViewedHeader.text = "Recently Viewed"
+        recentlyViewedHeader.font = .systemFont(ofSize: 24, weight: .bold)
+        
+        view.addSubview(recentlyViewedHeader)
+        
+        recentlyViewedHeader.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            recentlyViewedHeader.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            recentlyViewedHeader.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
+            recentlyViewedHeader.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 16)
+        ])
+    }
+    
+    func setupRecentlyViewedCollectionView() {
+        view.addSubview(recentlyViewedCollectionView)
+
+        recentlyViewedDataSource.navigationController = navigationController
+
+        recentlyViewedCollectionView.dataSource = recentlyViewedDataSource
+        recentlyViewedCollectionView.delegate = recentlyViewedDataSource
+
+        recentlyViewedCollectionView.register(RecentlyViewedCell.self, forCellWithReuseIdentifier: RecentlyViewedCell.cellId)
+
+        self.view.layoutIfNeeded()
+
+        recentlyViewedCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            recentlyViewedCollectionView.topAnchor.constraint(equalTo: self.recentlyViewedHeader.bottomAnchor, constant: 16),
+            recentlyViewedCollectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            recentlyViewedCollectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            recentlyViewedCollectionView.heightAnchor.constraint(equalToConstant: 250)
+        ])
     }
 }
 

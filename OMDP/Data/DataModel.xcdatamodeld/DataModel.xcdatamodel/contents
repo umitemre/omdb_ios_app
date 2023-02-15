@@ -3,6 +3,7 @@
     <entity name="MovieDetailLocal" representedClassName="MovieDetailLocal" syncable="YES">
         <attribute name="imdbId" optional="YES" attributeType="String"/>
         <attribute name="poster" optional="YES" attributeType="String"/>
+        <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="title" optional="YES" attributeType="String"/>
     </entity>
 </model>

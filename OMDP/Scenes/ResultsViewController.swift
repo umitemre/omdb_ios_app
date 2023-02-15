@@ -12,7 +12,7 @@ import RxSwift
 class ResultsViewController: UICollectionViewController {
     private let disposeBag = DisposeBag()
 
-    private let viewModel = SearchMovieViewModel()
+    private let viewModel = ResultsViewModel()
 
     private let loadingView = UIView()
     private let errorText = UILabel()

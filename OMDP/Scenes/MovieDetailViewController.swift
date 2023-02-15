@@ -75,8 +75,12 @@ class MovieDetailViewController: UIViewController {
         self.saveRecentlyViewed(search)
     }
     
+    func presetKnownFields(from search: MovieDetailLocal) {
+        self.moviePoster.loadImageFromUrl(search.poster)
+        self.movieTitle.text = search.title
+    }
+
     func saveRecentlyViewed(_ search: Search) {
-        // Here we are going to save it locally
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
@@ -87,6 +91,7 @@ class MovieDetailViewController: UIViewController {
         movieDetailLocal.title = search.title
         movieDetailLocal.poster = search.poster
         movieDetailLocal.imdbId = search.imdbID
+        movieDetailLocal.timestamp = .now
 
         try? context.save()
         

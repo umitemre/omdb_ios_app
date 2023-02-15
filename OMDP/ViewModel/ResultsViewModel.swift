@@ -8,7 +8,7 @@
 import Foundation
 import RxSwift
 
-class SearchMovieViewModel : SearchMovieRepositoryInjected {
+class ResultsViewModel : SearchMovieRepositoryInjected {
     private var _searchMovieResult = ReplaySubject<SearchResult>.create(bufferSize: 1)
     var searchMovieResult: Observable<SearchResult> {
         get {
