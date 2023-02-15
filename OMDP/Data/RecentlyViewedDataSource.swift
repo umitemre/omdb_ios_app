@@ -36,7 +36,7 @@ extension RecentlyViewedDataSource: UICollectionViewDataSource {
 
         let vc = MovieDetailViewController()
         vc.imdbId = item.imdbId
-        vc.presetKnownFields(from: item)
+        vc.presetKnownFields(from: Search(from: item))
         navigationController?.pushViewController(vc, animated: true)
     }
 }

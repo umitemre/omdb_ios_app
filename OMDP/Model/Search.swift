@@ -19,6 +19,15 @@ struct Search: Codable {
         case type = "Type"
         case poster = "Poster"
     }
+    
+    init(from movieDetailLocal: MovieDetailLocal) {
+        self.imdbID = movieDetailLocal.imdbId
+        self.title = movieDetailLocal.title
+        self.poster = movieDetailLocal.poster
+
+        self.year = nil
+        self.type = nil
+    }
 }
 
 enum TypeEnum: String, Codable {

@@ -39,10 +39,12 @@ class SearchMovieViewController: UIViewController {
         
         self.setupUI()
         self.setObservers()
-        
-        self.viewModel.fetchRecentlyViewed()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.viewModel.fetchRecentlyViewed()
+    }
+
     private func setObservers() {
         self.viewModel.recentlyViewedMovies.subscribe { [weak self] data in
             guard let data = data.element else {

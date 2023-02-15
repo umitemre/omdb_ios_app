@@ -7,6 +7,7 @@
 
 import UIKit
 import RxSwift
+import CoreData
 
 class MovieDetailViewController: UIViewController {
     var imdbId: String?
@@ -72,34 +73,7 @@ class MovieDetailViewController: UIViewController {
         self.moviePoster.loadImageFromUrl(search.poster)
         self.movieTitle.text = search.title
         
-        self.saveRecentlyViewed(search)
-    }
-    
-    func presetKnownFields(from search: MovieDetailLocal) {
-        self.moviePoster.loadImageFromUrl(search.poster)
-        self.movieTitle.text = search.title
-    }
-
-    func saveRecentlyViewed(_ search: Search) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-        
-        let context = appDelegate.persistentContainer.viewContext
-
-        let movieDetailLocal = MovieDetailLocal(context: context)
-        movieDetailLocal.title = search.title
-        movieDetailLocal.poster = search.poster
-        movieDetailLocal.imdbId = search.imdbID
-        movieDetailLocal.timestamp = .now
-
-        try? context.save()
-        
-        guard let items = try? context.fetch(MovieDetailLocal.fetchRequest()) else {
-            return
-        }
-
-        print("Items size: \(items.count)")
+        CoreDataManager.shared.saveMovieDetail(search)
     }
 }
 
