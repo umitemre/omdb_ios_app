@@ -15,7 +15,8 @@ class SearchMovieViewController: UIViewController {
     let containerView = UIView()
     let recentlyViewedHeader = UILabel()
     let recentlyViewedDataSource = RecentlyViewedDataSource()
-
+    let noRecentlyViewedMessage = UILabel()
+    
     let viewModel = SearchViewModel()
 
     lazy var recentlyViewedCollectionView: UICollectionView = {
@@ -51,6 +52,9 @@ class SearchMovieViewController: UIViewController {
             guard let data = data.element else {
                 return
             }
+            
+            self?.noRecentlyViewedMessage.isHidden = data.count > 0
+            self?.recentlyViewedCollectionView.isHidden = data.count == 0
 
             self?.recentlyViewedDataSource.updateData(data: data)
             self?.recentlyViewedCollectionView.reloadData()
@@ -78,6 +82,7 @@ private extension SearchMovieViewController {
         
         setupContainerView()
         setupRecentlyViewedHeader()
+        setupNoRecentlyViewedMessage()
         setupRecentlyViewedCollectionView()
     }
     
@@ -86,9 +91,9 @@ private extension SearchMovieViewController {
         
         containerView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            containerView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            containerView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 32),
             containerView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
-            containerView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 16),
+            containerView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16),
             containerView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
         ])
     }
@@ -108,6 +113,8 @@ private extension SearchMovieViewController {
     }
     
     func setupRecentlyViewedCollectionView() {
+        recentlyViewedCollectionView.isHidden = true
+
         containerView.addSubview(recentlyViewedCollectionView)
 
         recentlyViewedDataSource.navigationController = navigationController
@@ -127,6 +134,24 @@ private extension SearchMovieViewController {
             recentlyViewedCollectionView.heightAnchor.constraint(equalToConstant: 250)
         ])
     }
+    
+    func setupNoRecentlyViewedMessage() {
+        noRecentlyViewedMessage.isHidden = true
+        
+        noRecentlyViewedMessage.text = "Your recently checked movies will be shown here."
+        noRecentlyViewedMessage.numberOfLines = 0
+        noRecentlyViewedMessage.textAlignment = .left
+        noRecentlyViewedMessage.font = .italicSystemFont(ofSize: 16)
+
+        containerView.addSubview(noRecentlyViewedMessage)
+        
+        noRecentlyViewedMessage.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            noRecentlyViewedMessage.leadingAnchor.constraint(equalTo: self.containerView.leadingAnchor),
+            noRecentlyViewedMessage.trailingAnchor.constraint(equalTo: self.containerView.trailingAnchor),
+            noRecentlyViewedMessage.topAnchor.constraint(equalTo: self.recentlyViewedHeader.bottomAnchor, constant: 16)
+        ])
+    }
 }
 
 extension SearchMovieViewController: UISearchResultsUpdating {
@@ -144,14 +169,12 @@ extension SearchMovieViewController: UISearchResultsUpdating {
 }
 
 extension SearchMovieViewController: UISearchBarDelegate {
-    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         containerView.isHidden = true
-        return true
     }
 
-    func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         containerView.isHidden = false
-        return true
     }
 
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
