@@ -12,6 +12,7 @@ import FirebaseRemoteConfig
 class SearchMovieViewController: UIViewController {
     let disposeBag = DisposeBag()
     
+    let containerView = UIView()
     let recentlyViewedHeader = UILabel()
     let recentlyViewedDataSource = RecentlyViewedDataSource()
 
@@ -75,26 +76,39 @@ private extension SearchMovieViewController {
 
         view.backgroundColor = UIColor.white
         
+        setupContainerView()
         setupRecentlyViewedHeader()
         setupRecentlyViewedCollectionView()
+    }
+    
+    func setupContainerView() {
+        view.addSubview(containerView)
+        
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            containerView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            containerView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
+            containerView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 16),
+            containerView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
+        ])
     }
     
     func setupRecentlyViewedHeader() {
         recentlyViewedHeader.text = "Recently Viewed"
         recentlyViewedHeader.font = .systemFont(ofSize: 24, weight: .bold)
         
-        view.addSubview(recentlyViewedHeader)
+        containerView.addSubview(recentlyViewedHeader)
         
         recentlyViewedHeader.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            recentlyViewedHeader.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-            recentlyViewedHeader.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16),
-            recentlyViewedHeader.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 16)
+            recentlyViewedHeader.topAnchor.constraint(equalTo: containerView.topAnchor),
+            recentlyViewedHeader.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+            recentlyViewedHeader.trailingAnchor.constraint(equalTo: containerView.trailingAnchor)
         ])
     }
     
     func setupRecentlyViewedCollectionView() {
-        view.addSubview(recentlyViewedCollectionView)
+        containerView.addSubview(recentlyViewedCollectionView)
 
         recentlyViewedDataSource.navigationController = navigationController
 
@@ -130,6 +144,16 @@ extension SearchMovieViewController: UISearchResultsUpdating {
 }
 
 extension SearchMovieViewController: UISearchBarDelegate {
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        containerView.isHidden = true
+        return true
+    }
+
+    func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
+        containerView.isHidden = false
+        return true
+    }
+
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         guard let text = searchController.searchBar.text?.trimmingCharacters(in: .whitespacesAndNewlines) else {
             return
