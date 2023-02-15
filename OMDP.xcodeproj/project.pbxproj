@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3032FDE9299D078F00826BF4 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3032FDE7299D078F00826BF4 /* DataModel.xcdatamodeld */; };
+		3032FDF0299D094D00826BF4 /* MovieDetailLocal+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3032FDEE299D094D00826BF4 /* MovieDetailLocal+CoreDataClass.swift */; };
+		3032FDF1299D094D00826BF4 /* MovieDetailLocal+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3032FDEF299D094D00826BF4 /* MovieDetailLocal+CoreDataProperties.swift */; };
 		3049D9AF29983D7300BF1A1F /* SearchMovieViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3049D9AE29983D7300BF1A1F /* SearchMovieViewModel.swift */; };
 		3049D9B229983DB100BF1A1F /* NetworkingLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3049D9B129983DB100BF1A1F /* NetworkingLayer.swift */; };
 		3049D9B529983E0A00BF1A1F /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 3049D9B429983E0A00BF1A1F /* Alamofire */; };
@@ -40,6 +43,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3032FDE8299D078F00826BF4 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		3032FDEE299D094D00826BF4 /* MovieDetailLocal+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieDetailLocal+CoreDataClass.swift"; sourceTree = "<group>"; };
+		3032FDEF299D094D00826BF4 /* MovieDetailLocal+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieDetailLocal+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3049D9AE29983D7300BF1A1F /* SearchMovieViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMovieViewModel.swift; sourceTree = "<group>"; };
 		3049D9B129983DB100BF1A1F /* NetworkingLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingLayer.swift; sourceTree = "<group>"; };
 		3049D9B829983EAD00BF1A1F /* SearchMovieRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMovieRepository.swift; sourceTree = "<group>"; };
@@ -106,6 +112,8 @@
 			isa = PBXGroup;
 			children = (
 				3049D9B729983E9D00BF1A1F /* Repository */,
+				3032FDEE299D094D00826BF4 /* MovieDetailLocal+CoreDataClass.swift */,
+				3032FDEF299D094D00826BF4 /* MovieDetailLocal+CoreDataProperties.swift */,
 				3049D9BA29983FC200BF1A1F /* SearchResult.swift */,
 				3049D9BC29983FDC00BF1A1F /* Search.swift */,
 				3049D9D52999736500BF1A1F /* MovieDetail.swift */,
@@ -184,6 +192,7 @@
 				3049D9B629983E9900BF1A1F /* Model */,
 				3049D9B029983DA500BF1A1F /* Networking */,
 				3049D9AD29983D6100BF1A1F /* ViewModel */,
+				3032FDE7299D078F00826BF4 /* DataModel.xcdatamodeld */,
 				308CA3BA29980AB200E5EFBE /* AppDelegate.swift */,
 				308CA3BC29980AB200E5EFBE /* SceneDelegate.swift */,
 				308CA3C329980AB300E5EFBE /* Assets.xcassets */,
@@ -286,17 +295,20 @@
 				3049D9C629984BAB00BF1A1F /* SearchItemCell.swift in Sources */,
 				3049D9D62999736500BF1A1F /* MovieDetail.swift in Sources */,
 				308CA3BF29980AB200E5EFBE /* SearchMovieViewController.swift in Sources */,
+				3032FDF1299D094D00826BF4 /* MovieDetailLocal+CoreDataProperties.swift in Sources */,
 				30805BD2299BDBF900D6FE08 /* SplashViewController.swift in Sources */,
 				3049D9CC299854F500BF1A1F /* UIImageView+Extensions.swift in Sources */,
 				3049D9BB29983FC200BF1A1F /* SearchResult.swift in Sources */,
 				3049D9D2299966AC00BF1A1F /* MovieDetailViewController.swift in Sources */,
 				3049D9D42999734300BF1A1F /* MovieDetailViewModel.swift in Sources */,
 				308CA3BB29980AB200E5EFBE /* AppDelegate.swift in Sources */,
+				3032FDF0299D094D00826BF4 /* MovieDetailLocal+CoreDataClass.swift in Sources */,
 				3049D9B929983EAD00BF1A1F /* SearchMovieRepository.swift in Sources */,
 				3049D9DA299A398D00BF1A1F /* MovieDetailRepository.swift in Sources */,
 				3049D9B229983DB100BF1A1F /* NetworkingLayer.swift in Sources */,
 				3049D9C329984B0400BF1A1F /* ResultsViewController.swift in Sources */,
 				3049D9BD29983FDC00BF1A1F /* Search.swift in Sources */,
+				3032FDE9299D078F00826BF4 /* DataModel.xcdatamodeld in Sources */,
 				3049D9D82999737C00BF1A1F /* Rating.swift in Sources */,
 				308CA3BD29980AB200E5EFBE /* SceneDelegate.swift in Sources */,
 				3049D9AF29983D7300BF1A1F /* SearchMovieViewModel.swift in Sources */,
@@ -588,6 +600,19 @@
 			productName = Reachability;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		3032FDE7299D078F00826BF4 /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				3032FDE8299D078F00826BF4 /* DataModel.xcdatamodel */,
+			);
+			currentVersion = 3032FDE8299D078F00826BF4 /* DataModel.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 308CA3AF29980AB200E5EFBE /* Project object */;
 }

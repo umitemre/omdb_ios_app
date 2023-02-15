@@ -71,6 +71,30 @@ class MovieDetailViewController: UIViewController {
     func presetKnownFields(from search: Search) {
         self.moviePoster.loadImageFromUrl(search.poster)
         self.movieTitle.text = search.title
+        
+        self.saveRecentlyViewed(search)
+    }
+    
+    func saveRecentlyViewed(_ search: Search) {
+        // Here we are going to save it locally
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        
+        let context = appDelegate.persistentContainer.viewContext
+
+        let movieDetailLocal = MovieDetailLocal(context: context)
+        movieDetailLocal.title = search.title
+        movieDetailLocal.poster = search.poster
+        movieDetailLocal.imdbId = search.imdbID
+
+        try? context.save()
+        
+        guard let items = try? context.fetch(MovieDetailLocal.fetchRequest()) else {
+            return
+        }
+
+        print("Items size: \(items.count)")
     }
 }
 
