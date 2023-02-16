@@ -71,7 +71,7 @@
 		30805BCD299BB5FB00D6FE08 /* remote_config_defaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = remote_config_defaults.plist; sourceTree = "<group>"; };
 		30805BCF299BB71100D6FE08 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		30805BD1299BDBF900D6FE08 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
-		308CA3B729980AB200E5EFBE /* OMDP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OMDP.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		308CA3B729980AB200E5EFBE /* OMDB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OMDB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		308CA3BA29980AB200E5EFBE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		308CA3BC29980AB200E5EFBE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		308CA3BE29980AB200E5EFBE /* SearchMovieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMovieViewController.swift; sourceTree = "<group>"; };
@@ -189,7 +189,7 @@
 		308CA3AE29980AB200E5EFBE = {
 			isa = PBXGroup;
 			children = (
-				308CA3B929980AB200E5EFBE /* OMDP */,
+				308CA3B929980AB200E5EFBE /* OMDB */,
 				308CA3B829980AB200E5EFBE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -197,12 +197,12 @@
 		308CA3B829980AB200E5EFBE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				308CA3B729980AB200E5EFBE /* OMDP.app */,
+				308CA3B729980AB200E5EFBE /* OMDB.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		308CA3B929980AB200E5EFBE /* OMDP */ = {
+		308CA3B929980AB200E5EFBE /* OMDB */ = {
 			isa = PBXGroup;
 			children = (
 				3032FE1B299D714400826BF4 /* Data */,
@@ -220,15 +220,15 @@
 				30805BCD299BB5FB00D6FE08 /* remote_config_defaults.plist */,
 				30805BCF299BB71100D6FE08 /* GoogleService-Info.plist */,
 			);
-			path = OMDP;
+			path = OMDB;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		308CA3B629980AB200E5EFBE /* OMDP */ = {
+		308CA3B629980AB200E5EFBE /* OMDB */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 308CA3CB29980AB300E5EFBE /* Build configuration list for PBXNativeTarget "OMDP" */;
+			buildConfigurationList = 308CA3CB29980AB300E5EFBE /* Build configuration list for PBXNativeTarget "OMDB" */;
 			buildPhases = (
 				308CA3B329980AB200E5EFBE /* Sources */,
 				308CA3B429980AB200E5EFBE /* Frameworks */,
@@ -238,7 +238,7 @@
 			);
 			dependencies = (
 			);
-			name = OMDP;
+			name = OMDB;
 			packageProductDependencies = (
 				3049D9B429983E0A00BF1A1F /* Alamofire */,
 				3049D9BF2998440300BF1A1F /* RxSwift */,
@@ -251,7 +251,7 @@
 				30805BD4299BE44900D6FE08 /* Reachability */,
 			);
 			productName = OMDP;
-			productReference = 308CA3B729980AB200E5EFBE /* OMDP.app */;
+			productReference = 308CA3B729980AB200E5EFBE /* OMDB.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -269,7 +269,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 308CA3B229980AB200E5EFBE /* Build configuration list for PBXProject "OMDP" */;
+			buildConfigurationList = 308CA3B229980AB200E5EFBE /* Build configuration list for PBXProject "OMDB" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -289,7 +289,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				308CA3B629980AB200E5EFBE /* OMDP */,
+				308CA3B629980AB200E5EFBE /* OMDB */,
 			);
 		};
 /* End PBXProject section */
@@ -465,7 +465,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = OMDP/Info.plist;
+				INFOPLIST_FILE = OMDB/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
@@ -476,7 +476,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.umitemreaydin.OMDP;
+				PRODUCT_BUNDLE_IDENTIFIER = com.umitemreaydin.OMDB;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -492,7 +492,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = OMDP/Info.plist;
+				INFOPLIST_FILE = OMDB/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
@@ -503,7 +503,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.umitemreaydin.OMDP;
+				PRODUCT_BUNDLE_IDENTIFIER = com.umitemreaydin.OMDB;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -514,7 +514,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		308CA3B229980AB200E5EFBE /* Build configuration list for PBXProject "OMDP" */ = {
+		308CA3B229980AB200E5EFBE /* Build configuration list for PBXProject "OMDB" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				308CA3C929980AB300E5EFBE /* Debug */,
@@ -523,7 +523,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		308CA3CB29980AB300E5EFBE /* Build configuration list for PBXNativeTarget "OMDP" */ = {
+		308CA3CB29980AB300E5EFBE /* Build configuration list for PBXNativeTarget "OMDB" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				308CA3CC29980AB300E5EFBE /* Debug */,
