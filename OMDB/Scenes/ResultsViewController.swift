@@ -89,23 +89,34 @@ class ResultsViewController: UICollectionViewController {
         viewModel.searchMovieResult.subscribe { [weak self] data in
             self?.loadingView.isHidden = true
 
-            let result = data.element
-            
-            guard let totalResults = result?.totalResults,
-                  let search = result?.search else {
-                self?.errorText.isHidden = false
-                self?.errorText.text = "No results found for \"\(self?.query ?? "")\", please narrow down your query and try again."
+            guard let result = data.element else {
                 return
             }
-            
-            print("Total results: \(totalResults)")
-            
-            self?.totalResults = Int(totalResults) ?? 0
-            self?.searchResults?.append(contentsOf: search)
-            self?.collectionView.reloadData()
 
-            self?.errorText.isHidden = true
-            self?.collectionView.isHidden = false
+            switch result {
+            case .success(let data):
+                guard let totalResults = data.totalResults,
+                      let search = data.search else {
+                    self?.errorText.isHidden = false
+                    self?.errorText.text = "No results found for \"\(self?.query ?? "")\", please narrow down your query and try again."
+                    return
+                }
+                
+                print("Total results: \(totalResults)")
+                
+                self?.totalResults = Int(totalResults) ?? 0
+                self?.searchResults?.append(contentsOf: search)
+                self?.collectionView.reloadData()
+
+                self?.errorText.isHidden = true
+                self?.collectionView.isHidden = false
+                break
+            case .failure(let error):
+                self?.errorText.text = "Something went wrong. (\(error.localizedDescription))"
+                self?.errorText.isHidden = false
+                self?.collectionView.isHidden = true
+                break
+            }
         }.disposed(by: disposeBag)
     }
 

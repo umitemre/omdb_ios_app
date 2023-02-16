@@ -16,6 +16,9 @@ class MovieDetailViewController: UIViewController {
 
     private let viewModel = MovieDetailViewModel()
 
+    private var loadingView: UIView!
+    private var activityIndicator: UIActivityIndicatorView!
+    
     private var scrollView = UIScrollView()
 
     private var stackView = UIStackView()
@@ -57,18 +60,41 @@ class MovieDetailViewController: UIViewController {
 
     private func setObservers() {
         viewModel.movieDetailResult.subscribe { [weak self] data in
-            guard let detail = data.element else {
+            self?.loadingView.isHidden = true
+
+            guard let result = data.element else {
+                self?.showError(nil)
                 return
             }
-            
-            self?.logEvent(detail)
 
-            self?.movieGenre.text = "Genre: \(detail.genre ?? "")"
-            self?.movieActors.text = "Actors: \(detail.actors ?? "")"
-            self?.movieDescription.text = detail.plot
+            switch result {
+            case .failure(let error):
+                self?.showError(error)
+            case .success(let detail):
+                self?.logEvent(detail)
+
+                self?.movieGenre.text = "Genre: \(detail.genre ?? "")"
+                self?.movieActors.text = "Actors: \(detail.actors ?? "")"
+                self?.movieDescription.text = detail.plot
+            }
         }.disposed(by: disposeBag)
     }
     
+    private func showError(_ error: Error?) {
+        let alert = UIAlertController(title: "No Internet Connection", message: "Something went wrong, please try again. (\(error?.localizedDescription ?? "")", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Try Again", style: .default, handler: { [weak self] _ in
+            guard let imdbId = self?.imdbId else {
+                return
+            }
+
+            self?.loadingView.isHidden = false
+            self?.viewModel.fetchMovieDetail(for: imdbId)
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+
+        self.present(alert, animated: true, completion: nil)
+    }
+
     func presetKnownFields(from search: Search) {
         self.moviePoster.loadImageFromUrl(search.poster)
         self.movieTitle.text = search.title
@@ -153,6 +179,36 @@ private extension MovieDetailViewController {
         ])
     }
 
+    func setupLoadingIndicator() {
+        // Set up the loading view
+        loadingView = UIView()
+        loadingView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        
+        activityIndicator = UIActivityIndicatorView(style: .large)
+        activityIndicator.center = loadingView.center
+        activityIndicator.color = UIColor.white
+
+        loadingView.addSubview(activityIndicator)
+
+        view.addSubview(loadingView)
+        
+        loadingView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            loadingView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            loadingView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            loadingView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            loadingView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+        ])
+
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: self.loadingView.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: self.loadingView.centerYAnchor),
+        ])
+        
+        activityIndicator.startAnimating()
+    }
+    
     func setupMovieTitle() {
         containerView.addSubview(movieTitle)
 
@@ -220,6 +276,7 @@ private extension MovieDetailViewController {
         
         setupDummyView()
         setupContainerView()
+        setupLoadingIndicator()
         
         setupMovieTitle()
         setupMovieGenre()

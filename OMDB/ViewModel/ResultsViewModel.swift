@@ -9,8 +9,8 @@ import Foundation
 import RxSwift
 
 class ResultsViewModel : SearchMovieRepositoryInjected {
-    private var _searchMovieResult = ReplaySubject<SearchResult>.create(bufferSize: 1)
-    var searchMovieResult: Observable<SearchResult> {
+    private var _searchMovieResult = ReplaySubject<Result<SearchResult, Error>>.create(bufferSize: 1)
+    var searchMovieResult: Observable<Result<SearchResult, Error>> {
         get {
             return _searchMovieResult
         }
@@ -22,13 +22,7 @@ class ResultsViewModel : SearchMovieRepositoryInjected {
         self.isLoading = true
 
         self.searchRepository.fetchSearchResults(for: query, page: page) { [weak self] data in
-            switch(data) {
-            case .success(let data):
-                self?._searchMovieResult.onNext(data)
-            case .failure(let error):
-                fatalError("Error can not be accepted at this moment: \(error)")
-            }
-
+            self?._searchMovieResult.onNext(data)
             self?.isLoading = false
         }
     }
