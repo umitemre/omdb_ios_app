@@ -20,8 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(windowScene: windowScene)
 
-//        window?.rootViewController = SplashViewController()
-        window?.rootViewController = UINavigationController(rootViewController: SearchMovieViewController())
+        window?.rootViewController = SplashViewController()
         window?.makeKeyAndVisible()
     }
 
