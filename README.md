@@ -22,7 +22,7 @@ This is an iOS app that uses the Open Movie Database (OMDB) API to search for an
 
 ## Configuration
 
-To use the OMDB API, you will need to obtain an API key from the OMDB website. Once you have your API key, open the `API.swift` file and replace the `API_KEY` with your actual API key
+To use the OMDB API, you will need to obtain an API key from the OMDB website. Once you have your API key, open the `Info.plist` file and replace the `API_KEY` with your actual API key
 
 ## Acknowledgments
 
