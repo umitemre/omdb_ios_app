@@ -27,7 +27,9 @@ private extension RecentlyViewedCell {
     func setupUI() {
         self.contentView.addSubview(moviePoster)
         
+        moviePoster.image = UIImage(named: "placeholder")
         moviePoster.contentMode = .scaleAspectFill
+        moviePoster.clipsToBounds = true
         moviePoster.layer.cornerRadius = 20
         moviePoster.layer.borderWidth = 1
         moviePoster.layer.borderColor = UIColor(white: 0.85, alpha: 1).cgColor
