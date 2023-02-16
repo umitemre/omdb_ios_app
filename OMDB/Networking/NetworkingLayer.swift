@@ -51,7 +51,9 @@ class NetworkLayer {
             fatalError("Failed to add compile query parameters to URL")
         }
 
-        AF.request(finalUrl)
+        let request = URLRequest(url: finalUrl, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData)
+
+        AF.request(request)
             .validate()
             .responseDecodable(of: T.self) { (response) in
                 switch response.result {
